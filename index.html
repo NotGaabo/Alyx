@@ -7,11 +7,11 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --lilac-deep: #6B3FA0;
+    --lilac-deep: #8B5BA5;
     --lilac-mid: #9B6FD4;
-    --lilac-light: #C9A7E8;
-    --lilac-pale: #EDE0FA;
-    --lilac-mist: #F7F1FE;
+    --lilac-light: #B896D9;
+    --lilac-pale: #E8D9F0;
+    --lilac-mist: #F5EFF9;
     --white: #FEFCFF;
     --ink: #1A1020;
     --ink-soft: #3D2B55;
@@ -373,6 +373,11 @@
   }
   .gallery-item.tall .gallery-img-placeholder { min-height: 380px; }
   .gallery-item.wide .gallery-img-placeholder { min-height: 180px; }
+  .gallery-img-placeholder[src] {
+    display: block !important;
+    object-fit: cover;
+    object-position: center;
+  }
   .gi-1 { background: linear-gradient(145deg, #9B6FD4 0%, #6B3FA0 100%); }
   .gi-2 { background: linear-gradient(145deg, #EDE0FA 0%, #C9A7E8 100%); }
   .gi-3 { background: linear-gradient(145deg, #D8C0F5 0%, #9B6FD4 100%); }
@@ -610,27 +615,9 @@
     <div class="butterfly-bg b4">🦋</div>
   </div>
   <div class="hero-content">
-    <!-- LOGO SVG -->
+    <!-- LOGO IMAGE -->
     <div class="hero-logo-wrap">
-      <svg class="hero-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-        <defs>
-          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#C9A7E8"/>
-            <stop offset="100%" style="stop-color:#6B3FA0"/>
-          </linearGradient>
-          <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#EDE0FA"/>
-            <stop offset="100%" style="stop-color:#9B6FD4"/>
-          </linearGradient>
-        </defs>
-        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(155,111,212,0.4)" stroke-width="1" stroke-dasharray="6 4"/>
-        <ellipse cx="50" cy="50" rx="3" ry="18" fill="url(#logoGrad)"/>
-        <path d="M50,35 Q25,18 18,40 Q14,55 50,52" fill="url(#logoGrad)" opacity="0.9"/>
-        <path d="M50,52 Q14,55 20,68 Q28,78 50,65" fill="url(#logoGrad)" opacity="0.7"/>
-        <path d="M50,35 Q75,18 82,40 Q86,55 50,52" fill="url(#logoGrad2)" opacity="0.9"/>
-        <path d="M50,52 Q86,55 80,68 Q72,78 50,65" fill="url(#logoGrad2)" opacity="0.7"/>
-        <circle cx="50" cy="50" r="4" fill="url(#logoGrad)"/>
-      </svg>
+      <img src="images/logo.svg" alt="Alyx Logo" class="hero-logo-svg" style="filter: drop-shadow(0 0 30px rgba(155,111,212,0.6));">
     </div>
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
@@ -642,10 +629,6 @@
       <a href="#catalog" class="hero-cta">✦ Ver catálogo</a>
       <a href="#about" class="hero-cta-ghost">Conoce más</a>
     </div>
-  </div>
-  <div class="hero-scroll">
-    <div class="hero-scroll-line"></div>
-    Scroll
   </div>
 </section>
 
