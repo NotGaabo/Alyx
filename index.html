@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alyx — Diseño Gráfico & Creatividad Visual</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --lilac-deep: #6B3FA0;
+    --lilac-mid: #9B6FD4;
+    --lilac-light: #C9A7E8;
+    --lilac-pale: #EDE0FA;
+    --lilac-mist: #F7F1FE;
+    --white: #FEFCFF;
+    --ink: #1A1020;
+    --ink-soft: #3D2B55;
+    --gold: #D4AF7A;
+    --transition: cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--white);
+    color: var(--ink);
+    overflow-x: hidden;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--lilac-mist); }
+  ::-webkit-scrollbar-thumb { background: var(--lilac-mid); border-radius: 3px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 5vw;
+    background: rgba(254, 252, 255, 0.85);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(155,111,212,0.12);
+    transition: box-shadow 0.3s var(--transition);
+  }
+  nav.scrolled { box-shadow: 0 4px 30px rgba(107,63,160,0.1); }
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem; font-weight: 600;
+    color: var(--lilac-deep);
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2.2rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.85rem; font-weight: 400; letter-spacing: 0.06em;
+    color: var(--ink-soft); text-decoration: none; text-transform: uppercase;
+    position: relative; padding-bottom: 3px;
+    transition: color 0.3s;
+  }
+  .nav-links a::after {
+    content: ''; position: absolute; bottom: 0; left: 0;
+    width: 0; height: 1px; background: var(--lilac-mid);
+    transition: width 0.3s var(--transition);
+  }
+  .nav-links a:hover { color: var(--lilac-deep); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-btn {
+    background: var(--lilac-deep); color: var(--white);
+    border: none; padding: 0.55rem 1.4rem;
+    border-radius: 50px; font-size: 0.82rem;
+    font-family: 'DM Sans', sans-serif; font-weight: 500;
+    letter-spacing: 0.05em; cursor: pointer;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    text-decoration: none;
+  }
+  .nav-btn:hover {
+    background: var(--lilac-mid);
+    transform: translateY(-1px);
+    box-shadow: 0 6px 20px rgba(107,63,160,0.25);
+  }
+  .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+  .hamburger span { display: block; width: 24px; height: 2px; background: var(--ink-soft); border-radius: 2px; transition: all 0.3s; }
+
+  /* ─── HERO ─── */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+    background: linear-gradient(135deg, #F7F1FE 0%, #EDE0FA 40%, #D8C0F5 100%);
+    padding: 7rem 5vw 4rem;
+  }
+  .hero-bg {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .orb {
+    position: absolute; border-radius: 50%;
+    filter: blur(60px); opacity: 0.45;
+  }
+  .orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, #9B6FD4 0%, transparent 70%);
+    top: -120px; right: -100px;
+    animation: float1 8s ease-in-out infinite;
+  }
+  .orb-2 {
+    width: 350px; height: 350px;
+    background: radial-gradient(circle, #C9A7E8 0%, transparent 70%);
+    bottom: -80px; left: -60px;
+    animation: float2 10s ease-in-out infinite;
+  }
+  .orb-3 {
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, #6B3FA0 0%, transparent 70%);
+    top: 50%; left: 50%;
+    animation: float3 12s ease-in-out infinite;
+  }
+  .butterfly-bg {
+    position: absolute; font-size: 2rem; opacity: 0.08;
+    animation: flutter 6s ease-in-out infinite;
+    user-select: none;
+  }
+  .b1 { top: 15%; left: 8%; animation-delay: 0s; font-size: 3rem; }
+  .b2 { top: 70%; right: 10%; animation-delay: 2s; font-size: 2.5rem; }
+  .b3 { bottom: 20%; left: 25%; animation-delay: 4s; font-size: 1.5rem; }
+
+  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,20px)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-25px)} }
+  @keyframes float3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
+  @keyframes flutter { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-15px) rotate(5deg)} }
+
+  .hero-content {
+    text-align: center; position: relative; z-index: 1;
+    max-width: 780px;
+    animation: fadeUp 1s var(--transition) both;
+  }
+  @keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
+
+  .hero-logo-wrap {
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s 0.1s var(--transition) both;
+  }
+  .hero-logo-svg {
+    width: 100px; height: 100px;
+    filter: drop-shadow(0 8px 24px rgba(107,63,160,0.3));
+    animation: spin-slow 20s linear infinite;
+  }
+  @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(5rem, 14vw, 11rem);
+    font-weight: 300; line-height: 0.9;
+    color: var(--lilac-deep);
+    letter-spacing: -0.02em;
+    text-shadow: 0 4px 40px rgba(107,63,160,0.15);
+    animation: fadeUp 1s 0.2s var(--transition) both;
+  }
+  .hero-title em {
+    font-style: italic; color: var(--lilac-mid);
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.1rem, 3vw, 1.55rem);
+    font-weight: 300; font-style: italic;
+    color: var(--ink-soft);
+    margin: 1.5rem 0 2.5rem;
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+    animation: fadeUp 1s 0.35s var(--transition) both;
+  }
+  .hero-tagline span { color: var(--lilac-deep); font-weight: 600; font-style: normal; }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    background: var(--lilac-deep); color: var(--white);
+    padding: 0.9rem 2.5rem; border-radius: 50px;
+    text-decoration: none; font-size: 0.95rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    box-shadow: 0 8px 30px rgba(107,63,160,0.3);
+    transition: all 0.35s var(--transition);
+    animation: fadeUp 1s 0.5s var(--transition) both;
+  }
+  .hero-cta:hover {
+    background: var(--lilac-mid);
+    transform: translateY(-3px);
+    box-shadow: 0 14px 40px rgba(107,63,160,0.4);
+  }
+  .hero-cta-ghost {
+    display: inline-flex; align-items: center; gap: 0.6rem;
+    border: 1.5px solid var(--lilac-mid); color: var(--lilac-deep);
+    padding: 0.9rem 2.5rem; border-radius: 50px;
+    text-decoration: none; font-size: 0.95rem; font-weight: 500;
+    letter-spacing: 0.06em; text-transform: uppercase;
+    margin-left: 1rem;
+    transition: all 0.35s var(--transition);
+    animation: fadeUp 1s 0.6s var(--transition) both;
+  }
+  .hero-cta-ghost:hover {
+    background: var(--lilac-pale);
+    transform: translateY(-3px);
+  }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+
+  /* ─── SECTION COMMON ─── */
+  section { padding: 7rem 5vw; }
+  .section-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--lilac-mid);
+    margin-bottom: 0.8rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .section-label::before {
+    content: ''; display: inline-block; width: 24px; height: 1px;
+    background: var(--lilac-mid);
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 300; line-height: 1.15;
+    color: var(--ink);
+  }
+  .section-title em { color: var(--lilac-deep); font-style: italic; }
+
+  /* ─── ABOUT ─── */
+  #about {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 5rem;
+    align-items: center;
+  }
+  .about-text .section-title { margin-bottom: 1.5rem; }
+  .about-text p {
+    font-size: 1.05rem; line-height: 1.85;
+    color: #4A3B60; margin-bottom: 1.2rem;
+  }
+  .about-text p strong { color: var(--lilac-deep); }
+  .about-visual {
+    position: relative; display: flex; align-items: center; justify-content: center;
+  }
+  .about-card {
+    background: linear-gradient(135deg, var(--lilac-pale) 0%, #E0C8F8 100%);
+    border-radius: 28px; padding: 3rem 2.5rem;
+    text-align: center;
+    box-shadow: 0 20px 60px rgba(107,63,160,0.15);
+    position: relative; overflow: hidden;
+  }
+  .about-card::before {
+    content: '🦋'; font-size: 8rem; opacity: 0.08;
+    position: absolute; top: -10px; right: -15px;
+    line-height: 1;
+  }
+  .about-card-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 300; color: var(--lilac-deep);
+    line-height: 1;
+  }
+  .about-card-label { font-size: 0.85rem; color: var(--ink-soft); letter-spacing: 0.05em; margin-top: 0.3rem; }
+  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem; }
+
+  /* ─── CATALOG ─── */
+  #catalog { background: var(--lilac-mist); }
+  .catalog-header { text-align: center; margin-bottom: 3.5rem; }
+  .catalog-header .section-label { justify-content: center; }
+  .catalog-header .section-label::before { display: none; }
+  .catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.8rem; max-width: 1100px; margin: 0 auto;
+  }
+  .catalog-card {
+    background: var(--white); border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(107,63,160,0.08);
+    transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition);
+    cursor: pointer;
+  }
+  .catalog-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 50px rgba(107,63,160,0.18);
+  }
+  .catalog-img {
+    width: 100%; height: 220px; object-fit: cover;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 5rem;
+    transition: transform 0.5s var(--transition);
+    overflow: hidden;
+  }
+  .catalog-card:hover .catalog-img { transform: scale(1.05); }
+  .ci-1 { background: linear-gradient(135deg, #C9A7E8 0%, #9B6FD4 100%); }
+  .ci-2 { background: linear-gradient(135deg, #EDE0FA 0%, #C9A7E8 100%); }
+  .ci-3 { background: linear-gradient(135deg, #6B3FA0 0%, #9B6FD4 100%); }
+  .ci-4 { background: linear-gradient(135deg, #D8C0F5 0%, #6B3FA0 100%); }
+  .catalog-info { padding: 1.4rem 1.5rem; }
+  .catalog-tag {
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--lilac-mid);
+    margin-bottom: 0.4rem;
+  }
+  .catalog-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 400; color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .catalog-desc { font-size: 0.88rem; color: #6B5A80; line-height: 1.5; }
+
+  /* ─── MISSION / VISION ─── */
+  #mision-vision {
+    background: var(--white);
+    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem;
+  }
+  .mv-card {
+    border-radius: 24px; padding: 3rem 2.5rem;
+    position: relative; overflow: hidden;
+  }
+  .mv-mission { background: linear-gradient(135deg, #6B3FA0 0%, #9B6FD4 100%); }
+  .mv-vision { background: linear-gradient(135deg, #EDE0FA 0%, #D8C0F5 100%); }
+  .mv-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .mv-card .section-label { color: rgba(255,255,255,0.7); }
+  .mv-card .section-label::before { background: rgba(255,255,255,0.5); }
+  .mv-mission .section-title { color: var(--white); }
+  .mv-mission p { color: rgba(255,255,255,0.88); font-size: 1rem; line-height: 1.8; margin-top: 1rem; }
+  .mv-vision .section-label { color: var(--lilac-mid); }
+  .mv-vision .section-label::before { background: var(--lilac-mid); }
+  .mv-vision .section-title { color: var(--ink); }
+  .mv-vision p { color: var(--ink-soft); font-size: 1rem; line-height: 1.8; margin-top: 1rem; }
+  .mv-deco {
+    position: absolute; font-size: 10rem; opacity: 0.06;
+    bottom: -15px; right: -10px; line-height: 1;
+    pointer-events: none;
+  }
+
+  /* ─── VALUES ─── */
+  #valores { background: var(--lilac-mist); }
+  .valores-header { text-align: center; margin-bottom: 3.5rem; }
+  .valores-header .section-label { justify-content: center; }
+  .valores-header .section-label::before { display: none; }
+  .valores-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 1.4rem; max-width: 1000px; margin: 0 auto;
+  }
+  .valor-card {
+    background: var(--white); border-radius: 20px;
+    padding: 2rem 1.5rem; text-align: center;
+    box-shadow: 0 4px 16px rgba(107,63,160,0.08);
+    transition: transform 0.35s var(--transition), box-shadow 0.35s var(--transition);
+    cursor: default;
+  }
+  .valor-card:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 16px 40px rgba(107,63,160,0.16);
+  }
+  .valor-icon { font-size: 2.2rem; margin-bottom: 0.8rem; }
+  .valor-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-weight: 600; color: var(--lilac-deep);
+    margin-bottom: 0.4rem;
+  }
+  .valor-desc { font-size: 0.82rem; color: #7A6A90; line-height: 1.5; }
+
+  /* ─── WHY ALYX ─── */
+  #por-que { background: linear-gradient(160deg, #3A1A6B 0%, #6B3FA0 50%, #9B6FD4 100%); }
+  .pq-header { text-align: center; margin-bottom: 3.5rem; }
+  .pq-header .section-label { justify-content: center; color: var(--lilac-light); }
+  .pq-header .section-label::before { display: none; }
+  .pq-header .section-title { color: var(--white); }
+  .pq-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.4rem; max-width: 1000px; margin: 0 auto;
+  }
+  .pq-item {
+    background: rgba(255,255,255,0.1);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 18px; padding: 2rem 1.5rem;
+    text-align: center;
+    transition: background 0.3s, transform 0.3s;
+  }
+  .pq-item:hover { background: rgba(255,255,255,0.18); transform: translateY(-4px); }
+  .pq-icon { font-size: 2rem; margin-bottom: 0.8rem; }
+  .pq-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.25rem; color: var(--white); font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+  .pq-desc { font-size: 0.82rem; color: rgba(255,255,255,0.7); line-height: 1.5; }
+
+  /* ─── QR ─── */
+  #qr { background: var(--white); text-align: center; }
+  .qr-header { margin-bottom: 3rem; }
+  .qr-wrap {
+    display: inline-flex; flex-direction: column; align-items: center; gap: 1.5rem;
+    background: var(--lilac-mist); border-radius: 28px;
+    padding: 3rem 3.5rem;
+    box-shadow: 0 12px 40px rgba(107,63,160,0.1);
+    border: 1px solid rgba(155,111,212,0.15);
+  }
+  .qr-frame {
+    background: var(--white); border-radius: 16px; padding: 1.2rem;
+    box-shadow: 0 6px 20px rgba(107,63,160,0.1);
+  }
+  .qr-canvas {
+    display: block;
+    width: 200px; height: 200px;
+  }
+  .qr-label {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; color: var(--lilac-deep);
+    font-weight: 300; font-style: italic;
+  }
+  .qr-sub { font-size: 0.85rem; color: #7A6A90; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.7);
+    padding: 4rem 5vw 2.5rem;
+  }
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr;
+    gap: 3rem; margin-bottom: 3rem;
+  }
+  .footer-brand .nav-logo { color: var(--lilac-light); display: block; margin-bottom: 0.8rem; }
+  .footer-brand p { font-size: 0.9rem; line-height: 1.7; max-width: 300px; }
+  .footer-col h4 {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--lilac-light);
+    margin-bottom: 1.2rem;
+  }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 0.6rem; }
+  .footer-col ul a {
+    color: rgba(255,255,255,0.6); text-decoration: none; font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .footer-col ul a:hover { color: var(--lilac-light); }
+  .social-links { display: flex; gap: 1rem; margin-top: 1rem; }
+  .social-link {
+    width: 38px; height: 38px; border-radius: 50%;
+    background: rgba(155,111,212,0.2);
+    display: flex; align-items: center; justify-content: center;
+    text-decoration: none; font-size: 1rem;
+    transition: background 0.3s, transform 0.2s;
+  }
+  .social-link:hover { background: var(--lilac-mid); transform: translateY(-2px); }
+  .footer-bottom {
+    border-top: 1px solid rgba(255,255,255,0.08);
+    padding-top: 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap; gap: 1rem;
+  }
+  .footer-bottom p { font-size: 0.82rem; color: rgba(255,255,255,0.4); }
+  .footer-bottom span { color: var(--lilac-light); }
+
+  /* ─── SCROLL REVEAL ─── */
+  .reveal {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s var(--transition), transform 0.7s var(--transition);
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-delay-1 { transition-delay: 0.1s; }
+  .reveal-delay-2 { transition-delay: 0.2s; }
+  .reveal-delay-3 { transition-delay: 0.3s; }
+  .reveal-delay-4 { transition-delay: 0.4s; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    #about { grid-template-columns: 1fr; gap: 3rem; }
+    .about-visual { order: -1; }
+    #mision-vision { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column;
+      position: absolute; top: 100%; left: 0; right: 0;
+      background: rgba(254,252,255,0.97);
+      backdrop-filter: blur(18px);
+      padding: 1.5rem 5vw;
+      border-bottom: 1px solid var(--lilac-pale);
+      gap: 1.2rem;
+    }
+    .hamburger { display: flex; }
+    .hero-title { font-size: 5rem; }
+    .hero-btns { gap: 0.8rem; }
+    .hero-cta-ghost { margin-left: 0; }
+    section { padding: 4rem 5vw; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">Alyx</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about">Nosotros</a></li>
+    <li><a href="#catalog">Catálogo</a></li>
+    <li><a href="#mision-vision">Misión</a></li>
+    <li><a href="#valores">Valores</a></li>
+    <li><a href="#qr">Contacto</a></li>
+  </ul>
+  <a href="#catalog" class="nav-btn">Ver catálogo</a>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg">
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
+    <div class="butterfly-bg b1">🦋</div>
+    <div class="butterfly-bg b2">🦋</div>
+    <div class="butterfly-bg b3">🦋</div>
+  </div>
+  <div class="hero-content">
+    <!-- LOGO SVG -->
+    <div class="hero-logo-wrap">
+      <svg class="hero-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#6B3FA0"/>
+            <stop offset="100%" style="stop-color:#C9A7E8"/>
+          </linearGradient>
+          <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" style="stop-color:#9B6FD4"/>
+            <stop offset="100%" style="stop-color:#EDE0FA"/>
+          </linearGradient>
+        </defs>
+        <!-- Outer ring -->
+        <circle cx="50" cy="50" r="46" fill="none" stroke="url(#logoGrad)" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.6"/>
+        <!-- Butterfly body -->
+        <ellipse cx="50" cy="50" rx="3" ry="18" fill="url(#logoGrad)"/>
+        <!-- Left wings -->
+        <path d="M50,35 Q25,18 18,40 Q14,55 50,52" fill="url(#logoGrad)" opacity="0.85"/>
+        <path d="M50,52 Q14,55 20,68 Q28,78 50,65" fill="url(#logoGrad)" opacity="0.65"/>
+        <!-- Right wings -->
+        <path d="M50,35 Q75,18 82,40 Q86,55 50,52" fill="url(#logoGrad2)" opacity="0.85"/>
+        <path d="M50,52 Q86,55 80,68 Q72,78 50,65" fill="url(#logoGrad2)" opacity="0.65"/>
+        <!-- Center dot -->
+        <circle cx="50" cy="50" r="4" fill="url(#logoGrad)"/>
+      </svg>
+    </div>
+
+    <h1 class="hero-title">Al<em>yx</em></h1>
+    <p class="hero-tagline">En <span>Alyx</span>, donde tus ideas pueden tomar alas.</p>
+    <div class="hero-btns">
+      <a href="#catalog" class="hero-cta">✦ Ver catálogo</a>
+      <a href="#about" class="hero-cta-ghost">Conoce más</a>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-text reveal">
+    <div class="section-label">Sobre nosotros</div>
+    <h2 class="section-title">Creatividad que <em>trasciende</em></h2>
+    <p>
+      <strong>Alyx</strong> es un emprendimiento creativo donde el diseño gráfico se convierte en arte. Nacemos de la pasión por transformar ideas en identidades visuales que inspiran, conectan y perduran.
+    </p>
+    <p>
+      Nos especializamos en <strong>diseño gráfico</strong>, creatividad visual y creación de contenido elegante y profesional. Cada proyecto es una oportunidad de construir algo único que refleje la esencia de quien lo lleva.
+    </p>
+    <p>
+      Como las mariposas que simbolizan nuestra marca, creemos que las ideas más bellas nacen de una metamorfosis creativa — de evolucionar, de transformarse, de volar.
+    </p>
+  </div>
+  <div class="about-visual reveal reveal-delay-2">
+    <div class="about-card">
+      <div class="about-stats">
+        <div>
+          <div class="about-card-num">∞</div>
+          <div class="about-card-label">Creatividad sin límites</div>
+        </div>
+        <div>
+          <div class="about-card-num">🦋</div>
+          <div class="about-card-label">Libertad de expresión</div>
+        </div>
+        <div>
+          <div class="about-card-num">100%</div>
+          <div class="about-card-label">Atención personalizada</div>
+        </div>
+        <div>
+          <div class="about-card-num">✦</div>
+          <div class="about-card-label">Calidad garantizada</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CATALOG -->
+<section id="catalog">
+  <div class="catalog-header reveal">
+    <div class="section-label">Portafolio</div>
+    <h2 class="section-title">Nuestro <em>catálogo</em></h2>
+    <p style="color:#6B5A80;margin-top:0.8rem;font-size:0.95rem;max-width:500px;margin-left:auto;margin-right:auto;">Piezas creadas con pasión, detalle y una visión estética única para cada cliente.</p>
+  </div>
+  <div class="catalog-grid">
+    <div class="catalog-card reveal reveal-delay-1">
+      <div class="catalog-img ci-1">🎨</div>
+      <div class="catalog-info">
+        <div class="catalog-tag">Identidad visual</div>
+        <div class="catalog-name">Branding Aurora</div>
+        <div class="catalog-desc">Diseño de identidad completa con paleta cromática, tipografía y guía de estilo para marcas emergentes.</div>
+      </div>
+    </div>
+    <div class="catalog-card reveal reveal-delay-2">
+      <div class="catalog-img ci-2">✦</div>
+      <div class="catalog-info">
+        <div class="catalog-tag">Redes sociales</div>
+        <div class="catalog-name">Pack Elegance</div>
+        <div class="catalog-desc">Plantillas personalizadas para Instagram y TikTok con coherencia estética y estilo editorial sofisticado.</div>
+      </div>
+    </div>
+    <div class="catalog-card reveal reveal-delay-3">
+      <div class="catalog-img ci-3">🦋</div>
+      <div class="catalog-info">
+        <div class="catalog-tag">Diseño editorial</div>
+        <div class="catalog-name">Mariposa Print</div>
+        <div class="catalog-desc">Diseño de flyers, invitaciones y materiales impresos con acabados elegantes y detallados que sorprenden.</div>
+      </div>
+    </div>
+    <div class="catalog-card reveal reveal-delay-4">
+      <div class="catalog-img ci-4">💜</div>
+      <div class="catalog-info">
+        <div class="catalog-tag">Contenido digital</div>
+        <div class="catalog-name">Digital Dream</div>
+        <div class="catalog-desc">Creación de contenido visual completo: banners, portadas, stories y más, con un toque artístico irresistible.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MISIÓN / VISIÓN -->
+<section id="mision-vision">
+  <div class="mv-card mv-mission reveal">
+    <div class="mv-icon">🦋</div>
+    <div class="section-label">Propósito</div>
+    <h2 class="section-title">Nuestra <em style="color:var(--lilac-light)">Misión</em></h2>
+    <p>Alyx como empresa tiene la misión de hacer sentir satisfechos a nuestros clientes con cada uno de nuestros productos que tenemos a nuestra disposición los cuales reflejen belleza, delicadeza y creatividad. Nos esforzamos por fusionar diseños con calidad y sostenibilidad, y con ello nuestros clientes que como las mariposas puedan volar hasta sus sueños.</p>
+    <div class="mv-deco">🦋</div>
+  </div>
+  <div class="mv-card mv-vision reveal reveal-delay-2">
+    <div class="mv-icon">🌸</div>
+    <div class="section-label">Horizonte</div>
+    <h2 class="section-title">Nuestra <em>Visión</em></h2>
+    <p>Nos visualizamos como una marca que, al igual que las mariposas, simbolice delicadeza, color y elegancia. Aspiramos a ser reconocidos por crear productos que cumplan las expectativas de nuestros clientes y a la vez con nuestra política de calidad.</p>
+    <div class="mv-deco">🌸</div>
+  </div>
+</section>
+
+<!-- VALORES -->
+<section id="valores">
+  <div class="valores-header reveal">
+    <div class="section-label">Lo que nos define</div>
+    <h2 class="section-title">Nuestros <em>valores</em></h2>
+  </div>
+  <div class="valores-grid">
+    <div class="valor-card reveal reveal-delay-1">
+      <div class="valor-icon">🎨</div>
+      <div class="valor-name">Creatividad</div>
+      <div class="valor-desc">Cada pieza nace de una chispa original y única que nos diferencia.</div>
+    </div>
+    <div class="valor-card reveal reveal-delay-2">
+      <div class="valor-icon">✦</div>
+      <div class="valor-name">Calidad</div>
+      <div class="valor-desc">Perfeccionamos cada detalle hasta que el resultado nos inspire.</div>
+    </div>
+    <div class="valor-card reveal reveal-delay-3">
+      <div class="valor-icon">🌸</div>
+      <div class="valor-name">Belleza</div>
+      <div class="valor-desc">La estética es nuestra lengua materna y la hablamos con fluidez.</div>
+    </div>
+    <div class="valor-card reveal reveal-delay-4">
+      <div class="valor-icon">💎</div>
+      <div class="valor-name">Elegancia</div>
+      <div class="valor-desc">La sofisticación refinada se encuentra en cada trazo y color.</div>
+    </div>
+    <div class="valor-card reveal reveal-delay-1">
+      <div class="valor-icon">🦋</div>
+      <div class="valor-name">Libertad</div>
+      <div class="valor-desc">Como la mariposa, volamos sin límites en el espacio creativo.</div>
+    </div>
+    <div class="valor-card reveal reveal-delay-2">
+      <div class="valor-icon">💜</div>
+      <div class="valor-name">Compromiso</div>
+      <div class="valor-desc">Tu satisfacción es nuestra mayor motivación y recompensa.</div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUÉ ALYX -->
+<section id="por-que">
+  <div class="pq-header reveal">
+    <div class="section-label">Razones para elegirnos</div>
+    <h2 class="section-title">¿Por qué elegir <em style="color:var(--lilac-light)">Alyx</em>?</h2>
+  </div>
+  <div class="pq-grid">
+    <div class="pq-item reveal reveal-delay-1">
+      <div class="pq-icon">🎨</div>
+      <div class="pq-name">Diseños creativos</div>
+      <div class="pq-desc">Conceptos originales pensados para destacar y diferenciarse en cualquier plataforma.</div>
+    </div>
+    <div class="pq-item reveal reveal-delay-2">
+      <div class="pq-icon">🤝</div>
+      <div class="pq-name">Atención personalizada</div>
+      <div class="pq-desc">Escuchamos cada idea y la transformamos en tu visión exacta con dedicación total.</div>
+    </div>
+    <div class="pq-item reveal reveal-delay-3">
+      <div class="pq-icon">✦</div>
+      <div class="pq-name">Calidad visual</div>
+      <div class="pq-desc">Estándares altos en cada entrega, garantizando resultados que sorprenden.</div>
+    </div>
+    <div class="pq-item reveal reveal-delay-4">
+      <div class="pq-icon">💡</div>
+      <div class="pq-name">Innovación</div>
+      <div class="pq-desc">Tendencias actuales fusionadas con una identidad artística única y genuina.</div>
+    </div>
+    <div class="pq-item reveal reveal-delay-1">
+      <div class="pq-icon">💎</div>
+      <div class="pq-name">Elegancia profesional</div>
+      <div class="pq-desc">Resultados que proyectan profesionalismo, sofisticación y confianza en tu marca.</div>
+    </div>
+  </div>
+</section>
+
+<!-- QR CODE -->
+<section id="qr">
+  <div class="qr-header reveal">
+    <div class="section-label" style="justify-content:center"><span style="display:none"></span>Conéctate con nosotros</div>
+    <h2 class="section-title" style="text-align:center">Escanea y <em>descubre</em></h2>
+    <p style="color:#7A6A90;margin-top:0.8rem;font-size:0.95rem;">Escanea el código QR para conocer más sobre Alyx.</p>
+  </div>
+  <div style="display:flex;justify-content:center" class="reveal reveal-delay-2">
+    <div class="qr-wrap">
+      <div class="qr-frame">
+        <canvas class="qr-canvas" id="qrCanvas" width="200" height="200"></canvas>
+      </div>
+      <div class="qr-label">Alyx — Diseño Gráfico</div>
+      <div class="qr-sub">Escanea con la cámara de tu teléfono</div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#hero" class="nav-logo">Alyx</a>
+      <p>Diseño gráfico y creatividad visual con elegancia, pasión y detalle. Hacemos que tus ideas vuelen.</p>
+      <div class="social-links">
+        <a href="#" class="social-link" title="Instagram">📷</a>
+        <a href="#" class="social-link" title="Facebook">📘</a>
+        <a href="#" class="social-link" title="TikTok">🎵</a>
+        <a href="#" class="social-link" title="Pinterest">📌</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#about">Nosotros</a></li>
+        <li><a href="#catalog">Catálogo</a></li>
+        <li><a href="#mision-vision">Misión & Visión</a></li>
+        <li><a href="#valores">Valores</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#">Identidad visual</a></li>
+        <li><a href="#">Redes sociales</a></li>
+        <li><a href="#">Diseño editorial</a></li>
+        <li><a href="#">Contenido digital</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 <span>Alyx</span>. Todos los derechos reservados.</p>
+    <p>Hecho con <span>💜</span> y creatividad</p>
+  </div>
+</footer>
+
+<script>
+  // ── NAV SCROLL ──
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  // ── HAMBURGER ──
+  function toggleMenu() {
+    const links = document.getElementById('navLinks');
+    links.classList.toggle('open');
+  }
+
+  // ── SCROLL REVEAL ──
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => observer.observe(el));
+
+  // ── QR CODE (pure canvas) ──
+  function drawQR() {
+    const canvas = document.getElementById('qrCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const size = 200;
+    const modules = 21;
+    const cell = Math.floor(size / modules);
+    const pad = (size - modules * cell) / 2;
+
+    // A minimal, decorative QR pattern (not a real scannable QR, but representative)
+    const pattern = [
+      [1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],
+      [1,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,0,0,1,0],
+      [1,0,1,1,1,0,1,0,1,0,1,0,1,1,0,1,1,1,0,1,0],
+      [1,0,1,1,1,0,1,0,0,1,0,0,0,0,0,1,1,1,0,1,0],
+      [1,0,1,1,1,0,1,0,1,1,1,0,1,0,0,1,1,1,0,1,0],
+      [1,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0],
+      [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
+      [0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,0,0],
+      [1,0,1,0,1,1,1,1,0,0,1,0,1,1,1,1,0,1,0,1,0],
+      [0,1,0,1,0,0,0,1,1,0,0,1,0,0,1,0,1,0,1,0,1],
+      [1,1,1,0,1,0,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1],
+      [0,0,1,1,0,1,0,1,0,0,1,0,0,1,0,1,1,0,0,1,0],
+      [1,0,0,1,1,0,1,0,1,0,0,1,1,0,1,0,0,1,1,0,1],
+      [0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,0,1,0,1,0,0],
+      [1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,1,0,1,0,1,1],
+      [1,0,0,0,0,0,1,0,1,1,1,0,0,1,0,0,1,0,1,0,1],
+      [1,0,1,1,1,0,1,0,0,0,1,1,0,1,1,0,1,1,0,0,0],
+      [1,0,1,1,1,0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,1],
+      [1,0,1,1,1,0,1,0,0,1,1,0,0,1,1,0,1,0,0,1,0],
+      [1,0,0,0,0,0,1,0,1,0,1,1,0,0,1,1,0,1,0,0,1],
+      [1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,0,1,0,1,0,0],
+    ];
+
+    ctx.fillStyle = '#FEFCFF';
+    ctx.fillRect(0, 0, size, size);
+
+    pattern.forEach((row, r) => {
+      row.forEach((col, c) => {
+        if (col === 1) {
+          const x = pad + c * cell;
+          const y = pad + r * cell;
+          // Gradient for modules
+          const grad = ctx.createLinearGradient(x, y, x + cell, y + cell);
+          grad.addColorStop(0, '#6B3FA0');
+          grad.addColorStop(1, '#9B6FD4');
+          ctx.fillStyle = grad;
+          ctx.beginPath();
+          ctx.roundRect(x + 0.5, y + 0.5, cell - 1, cell - 1, 1.5);
+          ctx.fill();
+        }
+      });
+    });
+
+    // Center logo
+    ctx.fillStyle = 'rgba(254,252,255,0.95)';
+    ctx.beginPath();
+    ctx.roundRect(size/2 - 18, size/2 - 18, 36, 36, 6);
+    ctx.fill();
+
+    ctx.fillStyle = '#6B3FA0';
+    ctx.font = 'bold 11px "Cormorant Garamond", serif';
+    ctx.textAlign = 'center';
+    ctx.textBaseline = 'middle';
+    ctx.fillText('Alyx', size/2, size/2);
+  }
+
+  // Polyfill for roundRect if needed
+  if (!CanvasRenderingContext2D.prototype.roundRect) {
+    CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
+      this.beginPath();
+      this.moveTo(x + r, y);
+      this.lineTo(x + w - r, y);
+      this.quadraticCurveTo(x + w, y, x + w, y + r);
+      this.lineTo(x + w, y + h - r);
+      this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      this.lineTo(x + r, y + h);
+      this.quadraticCurveTo(x, y + h, x, y + h - r);
+      this.lineTo(x, y + r);
+      this.quadraticCurveTo(x, y, x + r, y);
+      this.closePath();
+      return this;
+    };
+  }
+
+  window.addEventListener('load', drawQR);
+</script>
+</body>
+</html>
