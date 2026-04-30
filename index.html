@@ -7,8 +7,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
   :root {
-    --lilac-deep: #8B5BA5;
-    --lilac-mid: #9B6FD4;
+    --lilac-deep: #9B6FB8;
+    --lilac-mid: #A066C2;
     --lilac-light: #B896D9;
     --lilac-pale: #E8D9F0;
     --lilac-mist: #F5EFF9;
@@ -89,7 +89,7 @@
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
-    background: #1A0A2E;
+    background: linear-gradient(135deg, #0F0319 0%, #2D1B4E 50%, #1A0A2E 100%);
     padding: 7rem 5vw 4rem;
   }
   .hero-bg {
@@ -99,31 +99,35 @@
   .hero-mesh {
     position: absolute; inset: 0;
     background:
-      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(155,111,212,0.35) 0%, transparent 60%),
-      radial-gradient(ellipse 60% 70% at 15% 80%, rgba(107,63,160,0.4) 0%, transparent 55%),
-      radial-gradient(ellipse 50% 50% at 50% 50%, rgba(58,26,107,0.5) 0%, transparent 70%);
+      radial-gradient(ellipse 85% 65% at 75% 15%, rgba(201,167,232,0.4) 0%, transparent 55%),
+      radial-gradient(ellipse 70% 75% at 10% 85%, rgba(155,111,212,0.45) 0%, transparent 50%),
+      radial-gradient(ellipse 60% 55% at 50% 45%, rgba(107,63,160,0.35) 0%, transparent 65%),
+      radial-gradient(ellipse 100% 100% at 50% 50%, rgba(26,10,46,0.6) 0%, transparent 75%);
   }
   .orb {
     position: absolute; border-radius: 50%;
     filter: blur(70px); opacity: 0.55;
   }
   .orb-1 {
-    width: 550px; height: 550px;
-    background: radial-gradient(circle, #9B6FD4 0%, transparent 65%);
-    top: -150px; right: -130px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, #C9A7E8 0%, #9B6FD4 35%, transparent 70%);
+    top: -200px; right: -150px;
     animation: float1 9s ease-in-out infinite;
+    opacity: 0.65;
   }
   .orb-2 {
-    width: 380px; height: 380px;
-    background: radial-gradient(circle, #6B3FA0 0%, transparent 65%);
-    bottom: -100px; left: -80px;
+    width: 450px; height: 450px;
+    background: radial-gradient(circle, #9B6FD4 0%, #6B3FA0 40%, transparent 70%);
+    bottom: -120px; left: -100px;
     animation: float2 11s ease-in-out infinite;
+    opacity: 0.6;
   }
   .orb-3 {
-    width: 220px; height: 220px;
-    background: radial-gradient(circle, #C9A7E8 0%, transparent 65%);
-    top: 50%; left: 55%;
+    width: 280px; height: 280px;
+    background: radial-gradient(circle, #E8D9F0 0%, #C9A7E8 50%, transparent 70%);
+    top: 40%; left: 50%;
     animation: float3 13s ease-in-out infinite;
+    opacity: 0.5;
   }
   /* Decorative lines */
   .hero-lines {
@@ -159,23 +163,28 @@
     animation: fadeUp 1s 0.1s var(--transition) both;
   }
   .hero-logo-svg {
-    width: 110px; height: 110px;
-    filter: drop-shadow(0 0 30px rgba(155,111,212,0.6));
-    animation: spin-slow 20s linear infinite;
+    width: 140px; height: 100px;
+    object-fit: cover;
+    object-position: center top;
+    filter: drop-shadow(0 0 35px rgba(160,102,194,0.6));
+    transition: transform 0.3s ease;
   }
-  @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  .hero-logo-svg:hover {
+    transform: translateY(-8px);
+  }
 
   /* Pill badge above title */
   .hero-badge {
     display: inline-flex; align-items: center; gap: 0.5rem;
-    background: rgba(155,111,212,0.18);
-    border: 1px solid rgba(155,111,212,0.35);
-    padding: 0.4rem 1.2rem; border-radius: 50px;
-    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--lilac-light);
-    margin-bottom: 1.5rem;
+    background: rgba(160,102,194,0.15);
+    border: 1.2px solid rgba(201,167,232,0.4);
+    padding: 0.5rem 1.4rem; border-radius: 50px;
+    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: #E8D9F0;
+    margin-bottom: 1.8rem;
     animation: fadeUp 1s 0.15s var(--transition) both;
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 0 20px rgba(160,102,194,0.2);
   }
   .hero-badge-dot {
     width: 6px; height: 6px; border-radius: 50%;
@@ -188,9 +197,9 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(5.5rem, 15vw, 12rem);
     font-weight: 300; line-height: 0.85;
-    color: #F2E6FF;
+    color: #F8F1FF;
     letter-spacing: -0.02em;
-    text-shadow: 0 0 80px rgba(155,111,212,0.4);
+    text-shadow: 0 0 100px rgba(160,102,194,0.5), 0 0 40px rgba(201,167,232,0.3);
     animation: fadeUp 1s 0.25s var(--transition) both;
   }
   .hero-title em {
@@ -203,57 +212,58 @@
     font-family: 'Cormorant Garamond', serif;
     font-size: clamp(1.1rem, 2.8vw, 1.5rem);
     font-weight: 300; font-style: italic;
-    color: rgba(201,167,232,0.85);
+    color: #D4B5E8;
     margin: 1.8rem 0 2.8rem;
     line-height: 1.6;
     letter-spacing: 0.02em;
     animation: fadeUp 1s 0.4s var(--transition) both;
   }
-  .hero-tagline span { color: #F2E6FF; font-weight: 600; font-style: normal; }
+  .hero-tagline span { color: #F8F1FF; font-weight: 600; font-style: normal; }
   .hero-cta {
     display: inline-flex; align-items: center; gap: 0.7rem;
-    background: linear-gradient(135deg, #9B6FD4 0%, #6B3FA0 100%);
+    background: linear-gradient(135deg, #A87FD1 0%, #7D4EA8 100%);
     color: var(--white);
-    padding: 1rem 2.8rem; border-radius: 50px;
+    padding: 1.1rem 3rem; border-radius: 50px;
     text-decoration: none; font-size: 0.92rem; font-weight: 500;
     letter-spacing: 0.07em; text-transform: uppercase;
-    box-shadow: 0 8px 35px rgba(107,63,160,0.5), 0 0 0 1px rgba(155,111,212,0.3);
+    box-shadow: 0 12px 40px rgba(160,102,194,0.4), 0 0 0 1px rgba(201,167,232,0.2);
     transition: all 0.35s var(--transition);
     animation: fadeUp 1s 0.55s var(--transition) both;
   }
   .hero-cta:hover {
-    background: linear-gradient(135deg, #C9A7E8 0%, #9B6FD4 100%);
-    transform: translateY(-4px);
-    box-shadow: 0 16px 45px rgba(107,63,160,0.6), 0 0 0 1px rgba(201,167,232,0.5);
+    background: linear-gradient(135deg, #C9A7E8 0%, #A87FD1 100%);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 50px rgba(160,102,194,0.5), 0 0 0 1px rgba(232,217,240,0.4);
   }
   .hero-cta-ghost {
     display: inline-flex; align-items: center; gap: 0.7rem;
-    border: 1.5px solid rgba(155,111,212,0.5); color: var(--lilac-light);
-    padding: 1rem 2.8rem; border-radius: 50px;
+    border: 1.5px solid #D4B5E8; color: #F8F1FF;
+    padding: 1.1rem 3rem; border-radius: 50px;
     text-decoration: none; font-size: 0.92rem; font-weight: 500;
     letter-spacing: 0.07em; text-transform: uppercase;
-    backdrop-filter: blur(8px);
-    background: rgba(107,63,160,0.12);
+    backdrop-filter: blur(12px);
+    background: rgba(160,102,194,0.1);
     transition: all 0.35s var(--transition);
     animation: fadeUp 1s 0.65s var(--transition) both;
   }
   .hero-cta-ghost:hover {
-    background: rgba(155,111,212,0.2);
-    border-color: var(--lilac-light);
-    transform: translateY(-4px);
+    background: rgba(160,102,194,0.22);
+    border-color: #F8F1FF;
+    transform: translateY(-6px);
+    box-shadow: 0 12px 35px rgba(160,102,194,0.25);
   }
   .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
   /* Scroll indicator */
   .hero-scroll {
     position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
     display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
-    color: rgba(201,167,232,0.5); font-size: 0.72rem; letter-spacing: 0.12em;
+    color: rgba(212,181,232,0.6); font-size: 0.72rem; letter-spacing: 0.12em;
     text-transform: uppercase; z-index: 1;
     animation: fadeUp 1s 1s var(--transition) both;
   }
   .hero-scroll-line {
     width: 1px; height: 40px;
-    background: linear-gradient(to bottom, rgba(155,111,212,0.6), transparent);
+    background: linear-gradient(to bottom, rgba(212,181,232,0.7), transparent);
     animation: scrollLine 2s ease-in-out infinite;
   }
   @keyframes scrollLine { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.4);opacity:0.3} }
@@ -617,11 +627,7 @@
   <div class="hero-content">
     <!-- LOGO IMAGE -->
     <div class="hero-logo-wrap">
-      <img src="images/logo.svg" alt="Alyx Logo" class="hero-logo-svg" style="filter: drop-shadow(0 0 30px rgba(155,111,212,0.6));">
-    </div>
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      Diseño Gráfico & Creatividad Visual
+      <img src="images/Logo-Preview.png" alt="Alyx Logo" class="hero-logo-svg" style="filter: drop-shadow(0 0 30px rgba(160,102,194,0.5));">
     </div>
     <h1 class="hero-title">Al<em>yx</em></h1>
     <p class="hero-tagline">En <span>Alyx</span>, donde tus ideas pueden tomar alas.</p>
@@ -689,7 +695,7 @@
   </div>
   <div class="gallery-grid reveal reveal-delay-1">
     <div class="gallery-item tall">
-      <img src="images/paloma-taza.jpg" alt="Taza Paloma" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
+      <img src="images/paloma-taza.jpeg" alt="Taza Paloma" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
       <div class="gallery-overlay"></div>
     </div>
     <div class="gallery-item">
@@ -706,10 +712,6 @@
     </div>
     <div class="gallery-item">
       <img src="images/kyrie-irving-poster.jpg" alt="Póster Kyrie Irving" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
-      <div class="gallery-overlay"></div>
-    </div>
-    <div class="gallery-item">
-      <img src="images/alyx-logo-producto.jpg" alt="Producto Alyx" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
       <div class="gallery-overlay"></div>
     </div>
   </div>
@@ -821,7 +823,6 @@
         <img src="images/qr-instagram.jpg" alt="QR Instagram Alyx" class="qr-canvas" style="width:200px;height:200px;display:block;">
       </div>
       <div class="qr-label">Alyx — Diseño Gráfico</div>
-      <div class="qr-sub">Escanea con la cámara de tu teléfono</div>
     </div>
   </div>
 </section>
