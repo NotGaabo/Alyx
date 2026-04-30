@@ -89,119 +89,174 @@
     min-height: 100vh;
     display: flex; align-items: center; justify-content: center;
     position: relative; overflow: hidden;
-    background: linear-gradient(135deg, #F7F1FE 0%, #EDE0FA 40%, #D8C0F5 100%);
+    background: #1A0A2E;
     padding: 7rem 5vw 4rem;
   }
   .hero-bg {
     position: absolute; inset: 0; pointer-events: none; overflow: hidden;
   }
+  /* Mesh gradient layers */
+  .hero-mesh {
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 70% 20%, rgba(155,111,212,0.35) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 70% at 15% 80%, rgba(107,63,160,0.4) 0%, transparent 55%),
+      radial-gradient(ellipse 50% 50% at 50% 50%, rgba(58,26,107,0.5) 0%, transparent 70%);
+  }
   .orb {
     position: absolute; border-radius: 50%;
-    filter: blur(60px); opacity: 0.45;
+    filter: blur(70px); opacity: 0.55;
   }
   .orb-1 {
-    width: 500px; height: 500px;
-    background: radial-gradient(circle, #9B6FD4 0%, transparent 70%);
-    top: -120px; right: -100px;
-    animation: float1 8s ease-in-out infinite;
+    width: 550px; height: 550px;
+    background: radial-gradient(circle, #9B6FD4 0%, transparent 65%);
+    top: -150px; right: -130px;
+    animation: float1 9s ease-in-out infinite;
   }
   .orb-2 {
-    width: 350px; height: 350px;
-    background: radial-gradient(circle, #C9A7E8 0%, transparent 70%);
-    bottom: -80px; left: -60px;
-    animation: float2 10s ease-in-out infinite;
+    width: 380px; height: 380px;
+    background: radial-gradient(circle, #6B3FA0 0%, transparent 65%);
+    bottom: -100px; left: -80px;
+    animation: float2 11s ease-in-out infinite;
   }
   .orb-3 {
-    width: 200px; height: 200px;
-    background: radial-gradient(circle, #6B3FA0 0%, transparent 70%);
-    top: 50%; left: 50%;
-    animation: float3 12s ease-in-out infinite;
+    width: 220px; height: 220px;
+    background: radial-gradient(circle, #C9A7E8 0%, transparent 65%);
+    top: 50%; left: 55%;
+    animation: float3 13s ease-in-out infinite;
+  }
+  /* Decorative lines */
+  .hero-lines {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(155,111,212,0.07) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(155,111,212,0.07) 1px, transparent 1px);
+    background-size: 60px 60px;
   }
   .butterfly-bg {
-    position: absolute; font-size: 2rem; opacity: 0.08;
+    position: absolute; font-size: 2rem; opacity: 0.06;
     animation: flutter 6s ease-in-out infinite;
     user-select: none;
   }
-  .b1 { top: 15%; left: 8%; animation-delay: 0s; font-size: 3rem; }
-  .b2 { top: 70%; right: 10%; animation-delay: 2s; font-size: 2.5rem; }
-  .b3 { bottom: 20%; left: 25%; animation-delay: 4s; font-size: 1.5rem; }
+  .b1 { top: 18%; left: 6%; animation-delay: 0s; font-size: 3.5rem; }
+  .b2 { top: 65%; right: 8%; animation-delay: 2.5s; font-size: 2.8rem; }
+  .b3 { bottom: 18%; left: 28%; animation-delay: 4.5s; font-size: 1.6rem; }
+  .b4 { top: 35%; right: 28%; animation-delay: 1.5s; font-size: 1.2rem; opacity: 0.04; }
 
-  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-30px,20px)} }
-  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(20px,-25px)} }
-  @keyframes float3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.2)} }
-  @keyframes flutter { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-15px) rotate(5deg)} }
+  @keyframes float1 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(-35px,25px)} }
+  @keyframes float2 { 0%,100%{transform:translate(0,0)} 50%{transform:translate(25px,-30px)} }
+  @keyframes float3 { 0%,100%{transform:translate(-50%,-50%) scale(1)} 50%{transform:translate(-50%,-50%) scale(1.25)} }
+  @keyframes flutter { 0%,100%{transform:translateY(0) rotate(-8deg)} 50%{transform:translateY(-18px) rotate(8deg)} }
 
   .hero-content {
     text-align: center; position: relative; z-index: 1;
-    max-width: 780px;
-    animation: fadeUp 1s var(--transition) both;
+    max-width: 820px;
   }
   @keyframes fadeUp { from{opacity:0;transform:translateY(40px)} to{opacity:1;transform:translateY(0)} }
 
   .hero-logo-wrap {
-    margin-bottom: 1.5rem;
+    margin-bottom: 2rem;
     animation: fadeUp 1s 0.1s var(--transition) both;
   }
   .hero-logo-svg {
-    width: 100px; height: 100px;
-    filter: drop-shadow(0 8px 24px rgba(107,63,160,0.3));
+    width: 110px; height: 110px;
+    filter: drop-shadow(0 0 30px rgba(155,111,212,0.6));
     animation: spin-slow 20s linear infinite;
   }
   @keyframes spin-slow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
 
+  /* Pill badge above title */
+  .hero-badge {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: rgba(155,111,212,0.18);
+    border: 1px solid rgba(155,111,212,0.35);
+    padding: 0.4rem 1.2rem; border-radius: 50px;
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--lilac-light);
+    margin-bottom: 1.5rem;
+    animation: fadeUp 1s 0.15s var(--transition) both;
+    backdrop-filter: blur(8px);
+  }
+  .hero-badge-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--lilac-light);
+    animation: pulse 2s ease-in-out infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.7)} }
+
   .hero-title {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(5rem, 14vw, 11rem);
-    font-weight: 300; line-height: 0.9;
-    color: var(--lilac-deep);
+    font-size: clamp(5.5rem, 15vw, 12rem);
+    font-weight: 300; line-height: 0.85;
+    color: #F2E6FF;
     letter-spacing: -0.02em;
-    text-shadow: 0 4px 40px rgba(107,63,160,0.15);
-    animation: fadeUp 1s 0.2s var(--transition) both;
+    text-shadow: 0 0 80px rgba(155,111,212,0.4);
+    animation: fadeUp 1s 0.25s var(--transition) both;
   }
   .hero-title em {
-    font-style: italic; color: var(--lilac-mid);
+    font-style: italic;
+    background: linear-gradient(135deg, #C9A7E8 0%, #9B6FD4 50%, #EDE0FA 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
   .hero-tagline {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(1.1rem, 3vw, 1.55rem);
+    font-size: clamp(1.1rem, 2.8vw, 1.5rem);
     font-weight: 300; font-style: italic;
-    color: var(--ink-soft);
-    margin: 1.5rem 0 2.5rem;
-    line-height: 1.5;
+    color: rgba(201,167,232,0.85);
+    margin: 1.8rem 0 2.8rem;
+    line-height: 1.6;
     letter-spacing: 0.02em;
-    animation: fadeUp 1s 0.35s var(--transition) both;
+    animation: fadeUp 1s 0.4s var(--transition) both;
   }
-  .hero-tagline span { color: var(--lilac-deep); font-weight: 600; font-style: normal; }
+  .hero-tagline span { color: #F2E6FF; font-weight: 600; font-style: normal; }
   .hero-cta {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    background: var(--lilac-deep); color: var(--white);
-    padding: 0.9rem 2.5rem; border-radius: 50px;
-    text-decoration: none; font-size: 0.95rem; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    box-shadow: 0 8px 30px rgba(107,63,160,0.3);
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: linear-gradient(135deg, #9B6FD4 0%, #6B3FA0 100%);
+    color: var(--white);
+    padding: 1rem 2.8rem; border-radius: 50px;
+    text-decoration: none; font-size: 0.92rem; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    box-shadow: 0 8px 35px rgba(107,63,160,0.5), 0 0 0 1px rgba(155,111,212,0.3);
     transition: all 0.35s var(--transition);
-    animation: fadeUp 1s 0.5s var(--transition) both;
+    animation: fadeUp 1s 0.55s var(--transition) both;
   }
   .hero-cta:hover {
-    background: var(--lilac-mid);
-    transform: translateY(-3px);
-    box-shadow: 0 14px 40px rgba(107,63,160,0.4);
+    background: linear-gradient(135deg, #C9A7E8 0%, #9B6FD4 100%);
+    transform: translateY(-4px);
+    box-shadow: 0 16px 45px rgba(107,63,160,0.6), 0 0 0 1px rgba(201,167,232,0.5);
   }
   .hero-cta-ghost {
-    display: inline-flex; align-items: center; gap: 0.6rem;
-    border: 1.5px solid var(--lilac-mid); color: var(--lilac-deep);
-    padding: 0.9rem 2.5rem; border-radius: 50px;
-    text-decoration: none; font-size: 0.95rem; font-weight: 500;
-    letter-spacing: 0.06em; text-transform: uppercase;
-    margin-left: 1rem;
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    border: 1.5px solid rgba(155,111,212,0.5); color: var(--lilac-light);
+    padding: 1rem 2.8rem; border-radius: 50px;
+    text-decoration: none; font-size: 0.92rem; font-weight: 500;
+    letter-spacing: 0.07em; text-transform: uppercase;
+    backdrop-filter: blur(8px);
+    background: rgba(107,63,160,0.12);
     transition: all 0.35s var(--transition);
-    animation: fadeUp 1s 0.6s var(--transition) both;
+    animation: fadeUp 1s 0.65s var(--transition) both;
   }
   .hero-cta-ghost:hover {
-    background: var(--lilac-pale);
-    transform: translateY(-3px);
+    background: rgba(155,111,212,0.2);
+    border-color: var(--lilac-light);
+    transform: translateY(-4px);
   }
-  .hero-btns { display: flex; flex-wrap: wrap; gap: 0.8rem; justify-content: center; }
+  .hero-btns { display: flex; flex-wrap: wrap; gap: 1rem; justify-content: center; }
+  /* Scroll indicator */
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: rgba(201,167,232,0.5); font-size: 0.72rem; letter-spacing: 0.12em;
+    text-transform: uppercase; z-index: 1;
+    animation: fadeUp 1s 1s var(--transition) both;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px;
+    background: linear-gradient(to bottom, rgba(155,111,212,0.6), transparent);
+    animation: scrollLine 2s ease-in-out infinite;
+  }
+  @keyframes scrollLine { 0%,100%{transform:scaleY(1);opacity:1} 50%{transform:scaleY(0.4);opacity:0.3} }
 
   /* ─── SECTION COMMON ─── */
   section { padding: 7rem 5vw; }
@@ -238,71 +293,104 @@
   .about-visual {
     position: relative; display: flex; align-items: center; justify-content: center;
   }
-  .about-card {
-    background: linear-gradient(135deg, var(--lilac-pale) 0%, #E0C8F8 100%);
-    border-radius: 28px; padding: 3rem 2.5rem;
+  /* New elegant about visual */
+  .about-features {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;
+    width: 100%;
+  }
+  .about-feat {
+    background: linear-gradient(135deg, var(--lilac-mist) 0%, #EDE0FA 100%);
+    border-radius: 20px; padding: 1.8rem 1.5rem;
     text-align: center;
-    box-shadow: 0 20px 60px rgba(107,63,160,0.15);
+    border: 1px solid rgba(155,111,212,0.15);
+    transition: transform 0.3s var(--transition), box-shadow 0.3s var(--transition);
     position: relative; overflow: hidden;
   }
-  .about-card::before {
-    content: '🦋'; font-size: 8rem; opacity: 0.08;
-    position: absolute; top: -10px; right: -15px;
-    line-height: 1;
+  .about-feat::before {
+    content: ''; position: absolute;
+    top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--lilac-mid), var(--lilac-light));
+    border-radius: 20px 20px 0 0;
   }
-  .about-card-num {
+  .about-feat:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(107,63,160,0.15);
+  }
+  .about-feat-icon { font-size: 2rem; margin-bottom: 0.7rem; }
+  .about-feat-num {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 4rem; font-weight: 300; color: var(--lilac-deep);
+    font-size: 2.8rem; font-weight: 300; color: var(--lilac-deep);
     line-height: 1;
   }
-  .about-card-label { font-size: 0.85rem; color: var(--ink-soft); letter-spacing: 0.05em; margin-top: 0.3rem; }
-  .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem; margin-top: 1rem; }
+  .about-feat-label {
+    font-size: 0.78rem; color: var(--ink-soft);
+    letter-spacing: 0.06em; margin-top: 0.3rem;
+    line-height: 1.4;
+  }
+  .about-feat.featured {
+    grid-column: span 2;
+    background: linear-gradient(135deg, #6B3FA0 0%, #9B6FD4 100%);
+    padding: 2rem 2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+    text-align: left;
+  }
+  .about-feat.featured::before { background: rgba(255,255,255,0.3); }
+  .about-feat.featured .about-feat-icon { font-size: 2.5rem; flex-shrink: 0; }
+  .about-feat.featured .about-feat-num { color: #fff; font-size: 3.5rem; }
+  .about-feat.featured .about-feat-label { color: rgba(255,255,255,0.8); font-size: 0.9rem; }
 
-  /* ─── CATALOG ─── */
+  /* ─── CATALOG / GALLERY ─── */
   #catalog { background: var(--lilac-mist); }
   .catalog-header { text-align: center; margin-bottom: 3.5rem; }
   .catalog-header .section-label { justify-content: center; }
   .catalog-header .section-label::before { display: none; }
-  .catalog-grid {
+  .gallery-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-    gap: 1.8rem; max-width: 1100px; margin: 0 auto;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto;
+    gap: 1rem;
+    max-width: 1100px; margin: 0 auto;
   }
-  .catalog-card {
-    background: var(--white); border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(107,63,160,0.08);
+  .gallery-item {
+    border-radius: 18px; overflow: hidden;
+    cursor: pointer; position: relative;
+    box-shadow: 0 4px 18px rgba(107,63,160,0.1);
     transition: transform 0.4s var(--transition), box-shadow 0.4s var(--transition);
-    cursor: pointer;
+    background: var(--lilac-pale);
   }
-  .catalog-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 20px 50px rgba(107,63,160,0.18);
+  .gallery-item:hover {
+    transform: translateY(-6px) scale(1.02);
+    box-shadow: 0 18px 45px rgba(107,63,160,0.22);
+    z-index: 2;
   }
-  .catalog-img {
-    width: 100%; height: 220px; object-fit: cover;
+  .gallery-item.tall { grid-row: span 2; }
+  .gallery-item.wide { grid-column: span 2; }
+  .gallery-img-placeholder {
+    width: 100%; height: 100%; min-height: 180px;
     display: flex; align-items: center; justify-content: center;
-    font-size: 5rem;
-    transition: transform 0.5s var(--transition);
+    font-size: 4rem; position: relative;
     overflow: hidden;
   }
-  .catalog-card:hover .catalog-img { transform: scale(1.05); }
-  .ci-1 { background: linear-gradient(135deg, #C9A7E8 0%, #9B6FD4 100%); }
-  .ci-2 { background: linear-gradient(135deg, #EDE0FA 0%, #C9A7E8 100%); }
-  .ci-3 { background: linear-gradient(135deg, #6B3FA0 0%, #9B6FD4 100%); }
-  .ci-4 { background: linear-gradient(135deg, #D8C0F5 0%, #6B3FA0 100%); }
-  .catalog-info { padding: 1.4rem 1.5rem; }
-  .catalog-tag {
-    font-size: 0.72rem; font-weight: 500; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--lilac-mid);
-    margin-bottom: 0.4rem;
+  .gallery-item.tall .gallery-img-placeholder { min-height: 380px; }
+  .gallery-item.wide .gallery-img-placeholder { min-height: 180px; }
+  .gi-1 { background: linear-gradient(145deg, #9B6FD4 0%, #6B3FA0 100%); }
+  .gi-2 { background: linear-gradient(145deg, #EDE0FA 0%, #C9A7E8 100%); }
+  .gi-3 { background: linear-gradient(145deg, #D8C0F5 0%, #9B6FD4 100%); }
+  .gi-4 { background: linear-gradient(145deg, #6B3FA0 0%, #3A1A6B 100%); }
+  .gi-5 { background: linear-gradient(145deg, #C9A7E8 0%, #EDE0FA 100%); }
+  .gi-6 { background: linear-gradient(145deg, #7C4FB5 0%, #C9A7E8 100%); }
+  .gallery-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(107,63,160,0.5) 0%, transparent 50%);
+    opacity: 0; transition: opacity 0.35s;
   }
-  .catalog-name {
-    font-family: 'Cormorant Garamond', serif;
-    font-size: 1.4rem; font-weight: 400; color: var(--ink);
-    margin-bottom: 0.4rem;
+  .gallery-item:hover .gallery-overlay { opacity: 1; }
+  @media (max-width: 700px) {
+    .gallery-grid { grid-template-columns: repeat(2, 1fr); }
+    .gallery-item.wide { grid-column: span 2; }
+    .gallery-item.tall { grid-row: span 1; }
+    .gallery-item.tall .gallery-img-placeholder { min-height: 180px; }
   }
-  .catalog-desc { font-size: 0.88rem; color: #6B5A80; line-height: 1.5; }
 
   /* ─── MISSION / VISION ─── */
   #mision-vision {
@@ -511,12 +599,15 @@
 <!-- HERO -->
 <section id="hero">
   <div class="hero-bg">
+    <div class="hero-mesh"></div>
+    <div class="hero-lines"></div>
     <div class="orb orb-1"></div>
     <div class="orb orb-2"></div>
     <div class="orb orb-3"></div>
     <div class="butterfly-bg b1">🦋</div>
     <div class="butterfly-bg b2">🦋</div>
     <div class="butterfly-bg b3">🦋</div>
+    <div class="butterfly-bg b4">🦋</div>
   </div>
   <div class="hero-content">
     <!-- LOGO SVG -->
@@ -524,35 +615,37 @@
       <svg class="hero-logo-svg" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
         <defs>
           <linearGradient id="logoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#6B3FA0"/>
-            <stop offset="100%" style="stop-color:#C9A7E8"/>
+            <stop offset="0%" style="stop-color:#C9A7E8"/>
+            <stop offset="100%" style="stop-color:#6B3FA0"/>
           </linearGradient>
           <linearGradient id="logoGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" style="stop-color:#9B6FD4"/>
-            <stop offset="100%" style="stop-color:#EDE0FA"/>
+            <stop offset="0%" style="stop-color:#EDE0FA"/>
+            <stop offset="100%" style="stop-color:#9B6FD4"/>
           </linearGradient>
         </defs>
-        <!-- Outer ring -->
-        <circle cx="50" cy="50" r="46" fill="none" stroke="url(#logoGrad)" stroke-width="1.5" stroke-dasharray="8 4" opacity="0.6"/>
-        <!-- Butterfly body -->
+        <circle cx="50" cy="50" r="46" fill="none" stroke="rgba(155,111,212,0.4)" stroke-width="1" stroke-dasharray="6 4"/>
         <ellipse cx="50" cy="50" rx="3" ry="18" fill="url(#logoGrad)"/>
-        <!-- Left wings -->
-        <path d="M50,35 Q25,18 18,40 Q14,55 50,52" fill="url(#logoGrad)" opacity="0.85"/>
-        <path d="M50,52 Q14,55 20,68 Q28,78 50,65" fill="url(#logoGrad)" opacity="0.65"/>
-        <!-- Right wings -->
-        <path d="M50,35 Q75,18 82,40 Q86,55 50,52" fill="url(#logoGrad2)" opacity="0.85"/>
-        <path d="M50,52 Q86,55 80,68 Q72,78 50,65" fill="url(#logoGrad2)" opacity="0.65"/>
-        <!-- Center dot -->
+        <path d="M50,35 Q25,18 18,40 Q14,55 50,52" fill="url(#logoGrad)" opacity="0.9"/>
+        <path d="M50,52 Q14,55 20,68 Q28,78 50,65" fill="url(#logoGrad)" opacity="0.7"/>
+        <path d="M50,35 Q75,18 82,40 Q86,55 50,52" fill="url(#logoGrad2)" opacity="0.9"/>
+        <path d="M50,52 Q86,55 80,68 Q72,78 50,65" fill="url(#logoGrad2)" opacity="0.7"/>
         <circle cx="50" cy="50" r="4" fill="url(#logoGrad)"/>
       </svg>
     </div>
-
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      Diseño Gráfico & Creatividad Visual
+    </div>
     <h1 class="hero-title">Al<em>yx</em></h1>
     <p class="hero-tagline">En <span>Alyx</span>, donde tus ideas pueden tomar alas.</p>
     <div class="hero-btns">
       <a href="#catalog" class="hero-cta">✦ Ver catálogo</a>
       <a href="#about" class="hero-cta-ghost">Conoce más</a>
     </div>
+  </div>
+  <div class="hero-scroll">
+    <div class="hero-scroll-line"></div>
+    Scroll
   </div>
 </section>
 
@@ -572,68 +665,69 @@
     </p>
   </div>
   <div class="about-visual reveal reveal-delay-2">
-    <div class="about-card">
-      <div class="about-stats">
+    <div class="about-features">
+      <div class="about-feat">
+        <div class="about-feat-icon">🎨</div>
+        <div class="about-feat-num">∞</div>
+        <div class="about-feat-label">Creatividad sin límites</div>
+      </div>
+      <div class="about-feat">
+        <div class="about-feat-icon">✦</div>
+        <div class="about-feat-num">100%</div>
+        <div class="about-feat-label">Atención personalizada</div>
+      </div>
+      <div class="about-feat featured">
+        <div class="about-feat-icon">🦋</div>
         <div>
-          <div class="about-card-num">∞</div>
-          <div class="about-card-label">Creatividad sin límites</div>
+          <div class="about-feat-num">Alyx</div>
+          <div class="about-feat-label">Donde tus ideas toman alas y se convierten en realidad visual</div>
         </div>
-        <div>
-          <div class="about-card-num">🦋</div>
-          <div class="about-card-label">Libertad de expresión</div>
-        </div>
-        <div>
-          <div class="about-card-num">100%</div>
-          <div class="about-card-label">Atención personalizada</div>
-        </div>
-        <div>
-          <div class="about-card-num">✦</div>
-          <div class="about-card-label">Calidad garantizada</div>
-        </div>
+      </div>
+      <div class="about-feat">
+        <div class="about-feat-icon">💎</div>
+        <div class="about-feat-num">★★★</div>
+        <div class="about-feat-label">Calidad garantizada</div>
+      </div>
+      <div class="about-feat">
+        <div class="about-feat-icon">🌸</div>
+        <div class="about-feat-num">+5</div>
+        <div class="about-feat-label">Servicios de diseño</div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CATALOG -->
+<!-- CATALOG / GALLERY -->
 <section id="catalog">
   <div class="catalog-header reveal">
     <div class="section-label">Portafolio</div>
-    <h2 class="section-title">Nuestro <em>catálogo</em></h2>
-    <p style="color:#6B5A80;margin-top:0.8rem;font-size:0.95rem;max-width:500px;margin-left:auto;margin-right:auto;">Piezas creadas con pasión, detalle y una visión estética única para cada cliente.</p>
+    <h2 class="section-title">Nuestros <em>productos</em></h2>
+    <p style="color:#6B5A80;margin-top:0.8rem;font-size:0.95rem;max-width:500px;margin-left:auto;margin-right:auto;">Una galería de piezas creadas con pasión, detalle y visión artística única.</p>
   </div>
-  <div class="catalog-grid">
-    <div class="catalog-card reveal reveal-delay-1">
-      <div class="catalog-img ci-1">🎨</div>
-      <div class="catalog-info">
-        <div class="catalog-tag">Identidad visual</div>
-        <div class="catalog-name">Branding Aurora</div>
-        <div class="catalog-desc">Diseño de identidad completa con paleta cromática, tipografía y guía de estilo para marcas emergentes.</div>
-      </div>
+  <div class="gallery-grid reveal reveal-delay-1">
+    <div class="gallery-item tall">
+      <img src="images/paloma-taza.jpg" alt="Taza Paloma" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
+      <div class="gallery-overlay"></div>
     </div>
-    <div class="catalog-card reveal reveal-delay-2">
-      <div class="catalog-img ci-2">✦</div>
-      <div class="catalog-info">
-        <div class="catalog-tag">Redes sociales</div>
-        <div class="catalog-name">Pack Elegance</div>
-        <div class="catalog-desc">Plantillas personalizadas para Instagram y TikTok con coherencia estética y estilo editorial sofisticado.</div>
-      </div>
+    <div class="gallery-item">
+      <img src="images/alvaro-diaz-hoodie.jpg" alt="Hoodie Alvaro Diaz" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
+      <div class="gallery-overlay"></div>
     </div>
-    <div class="catalog-card reveal reveal-delay-3">
-      <div class="catalog-img ci-3">🦋</div>
-      <div class="catalog-info">
-        <div class="catalog-tag">Diseño editorial</div>
-        <div class="catalog-name">Mariposa Print</div>
-        <div class="catalog-desc">Diseño de flyers, invitaciones y materiales impresos con acabados elegantes y detallados que sorprenden.</div>
-      </div>
+    <div class="gallery-item">
+      <img src="images/santo-sosa-taza.jpg" alt="Taza Santo Sosa" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
+      <div class="gallery-overlay"></div>
     </div>
-    <div class="catalog-card reveal reveal-delay-4">
-      <div class="catalog-img ci-4">💜</div>
-      <div class="catalog-info">
-        <div class="catalog-tag">Contenido digital</div>
-        <div class="catalog-name">Digital Dream</div>
-        <div class="catalog-desc">Creación de contenido visual completo: banners, portadas, stories y más, con un toque artístico irresistible.</div>
-      </div>
+    <div class="gallery-item wide">
+      <img src="images/tumblers-2008.jpg" alt="Tumblers 2008" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/kyrie-irving-poster.jpg" alt="Póster Kyrie Irving" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
+      <div class="gallery-overlay"></div>
+    </div>
+    <div class="gallery-item">
+      <img src="images/alyx-logo-producto.jpg" alt="Producto Alyx" class="gallery-img-placeholder" style="width:100%;height:100%;object-fit:cover;">
+      <div class="gallery-overlay"></div>
     </div>
   </div>
 </section>
@@ -741,7 +835,7 @@
   <div style="display:flex;justify-content:center" class="reveal reveal-delay-2">
     <div class="qr-wrap">
       <div class="qr-frame">
-        <canvas class="qr-canvas" id="qrCanvas" width="200" height="200"></canvas>
+        <img src="images/qr-instagram.jpg" alt="QR Instagram Alyx" class="qr-canvas" style="width:200px;height:200px;display:block;">
       </div>
       <div class="qr-label">Alyx — Diseño Gráfico</div>
       <div class="qr-sub">Escanea con la cámara de tu teléfono</div>
@@ -806,94 +900,6 @@
     entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
   }, { threshold: 0.12 });
   reveals.forEach(el => observer.observe(el));
-
-  // ── QR CODE (pure canvas) ──
-  function drawQR() {
-    const canvas = document.getElementById('qrCanvas');
-    if (!canvas) return;
-    const ctx = canvas.getContext('2d');
-    const size = 200;
-    const modules = 21;
-    const cell = Math.floor(size / modules);
-    const pad = (size - modules * cell) / 2;
-
-    // A minimal, decorative QR pattern (not a real scannable QR, but representative)
-    const pattern = [
-      [1,1,1,1,1,1,1,0,1,0,1,0,1,1,1,1,1,1,1,0,0],
-      [1,0,0,0,0,0,1,0,0,1,0,1,0,1,0,0,0,0,0,1,0],
-      [1,0,1,1,1,0,1,0,1,0,1,0,1,1,0,1,1,1,0,1,0],
-      [1,0,1,1,1,0,1,0,0,1,0,0,0,0,0,1,1,1,0,1,0],
-      [1,0,1,1,1,0,1,0,1,1,1,0,1,0,0,1,1,1,0,1,0],
-      [1,0,0,0,0,0,1,0,0,0,1,1,0,0,0,0,0,0,0,1,0],
-      [1,1,1,1,1,1,1,0,1,0,1,0,1,0,1,1,1,1,1,1,1],
-      [0,0,0,0,0,0,0,0,1,1,0,1,0,1,0,0,0,0,0,0,0],
-      [1,0,1,0,1,1,1,1,0,0,1,0,1,1,1,1,0,1,0,1,0],
-      [0,1,0,1,0,0,0,1,1,0,0,1,0,0,1,0,1,0,1,0,1],
-      [1,1,1,0,1,0,1,0,0,1,1,0,1,1,0,1,0,1,1,0,1],
-      [0,0,1,1,0,1,0,1,0,0,1,0,0,1,0,1,1,0,0,1,0],
-      [1,0,0,1,1,0,1,0,1,0,0,1,1,0,1,0,0,1,1,0,1],
-      [0,0,0,0,0,0,0,0,1,0,1,1,0,0,1,0,1,0,1,0,0],
-      [1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,1,0,1,0,1,1],
-      [1,0,0,0,0,0,1,0,1,1,1,0,0,1,0,0,1,0,1,0,1],
-      [1,0,1,1,1,0,1,0,0,0,1,1,0,1,1,0,1,1,0,0,0],
-      [1,0,1,1,1,0,1,0,1,0,0,0,1,0,0,1,0,0,1,0,1],
-      [1,0,1,1,1,0,1,0,0,1,1,0,0,1,1,0,1,0,0,1,0],
-      [1,0,0,0,0,0,1,0,1,0,1,1,0,0,1,1,0,1,0,0,1],
-      [1,1,1,1,1,1,1,0,0,1,0,0,1,0,0,0,1,0,1,0,0],
-    ];
-
-    ctx.fillStyle = '#FEFCFF';
-    ctx.fillRect(0, 0, size, size);
-
-    pattern.forEach((row, r) => {
-      row.forEach((col, c) => {
-        if (col === 1) {
-          const x = pad + c * cell;
-          const y = pad + r * cell;
-          // Gradient for modules
-          const grad = ctx.createLinearGradient(x, y, x + cell, y + cell);
-          grad.addColorStop(0, '#6B3FA0');
-          grad.addColorStop(1, '#9B6FD4');
-          ctx.fillStyle = grad;
-          ctx.beginPath();
-          ctx.roundRect(x + 0.5, y + 0.5, cell - 1, cell - 1, 1.5);
-          ctx.fill();
-        }
-      });
-    });
-
-    // Center logo
-    ctx.fillStyle = 'rgba(254,252,255,0.95)';
-    ctx.beginPath();
-    ctx.roundRect(size/2 - 18, size/2 - 18, 36, 36, 6);
-    ctx.fill();
-
-    ctx.fillStyle = '#6B3FA0';
-    ctx.font = 'bold 11px "Cormorant Garamond", serif';
-    ctx.textAlign = 'center';
-    ctx.textBaseline = 'middle';
-    ctx.fillText('Alyx', size/2, size/2);
-  }
-
-  // Polyfill for roundRect if needed
-  if (!CanvasRenderingContext2D.prototype.roundRect) {
-    CanvasRenderingContext2D.prototype.roundRect = function(x, y, w, h, r) {
-      this.beginPath();
-      this.moveTo(x + r, y);
-      this.lineTo(x + w - r, y);
-      this.quadraticCurveTo(x + w, y, x + w, y + r);
-      this.lineTo(x + w, y + h - r);
-      this.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
-      this.lineTo(x + r, y + h);
-      this.quadraticCurveTo(x, y + h, x, y + h - r);
-      this.lineTo(x, y + r);
-      this.quadraticCurveTo(x, y, x + r, y);
-      this.closePath();
-      return this;
-    };
-  }
-
-  window.addEventListener('load', drawQR);
 </script>
 </body>
 </html>
