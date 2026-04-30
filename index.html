@@ -191,11 +191,29 @@
     width: clamp(210px, 26vw, 320px); height: clamp(270px, 36vw, 440px);
     background: linear-gradient(145deg, #C9A7E8, #9B6FD4);
     border-radius: 55% 45% 40% 60% / 60% 40% 55% 45%;
-    display: flex; align-items: center; justify-content: center; overflow: hidden;
+    overflow: hidden;
     box-shadow: 0 24px 60px rgba(107,63,160,0.28);
     animation: floatBlob 6s ease-in-out infinite;
   }
-  .hero-blob-main img { width: 72%; height: auto; object-fit: contain; filter: brightness(1.1) drop-shadow(0 4px 20px rgba(255,255,255,0.25)); }
+
+  /* Logo flotando ENCIMA de los blobs, independiente */
+  .hero-logo-float {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-20%, -50%);
+    width: clamp(160px, 20vw, 250px);
+    z-index: 10;
+    pointer-events: none;
+    animation: fadeUp 1s 0.6s var(--transition) both, logoLevitate 5s 1.6s ease-in-out infinite;
+  }
+  .hero-logo-float img {
+    width: 100%; height: auto; display: block;
+    filter: drop-shadow(0 8px 32px rgba(107,63,160,0.35)) drop-shadow(0 2px 8px rgba(107,63,160,0.2));
+  }
+  @keyframes logoLevitate {
+    0%,100% { transform: translate(-20%, -50%) translateY(0px); }
+    50%      { transform: translate(-20%, -50%) translateY(-18px); }
+  }
 
   .hero-blob-sm {
     position: absolute; top: 3%; right: 3%;
@@ -255,17 +273,40 @@
   }
 
   @media (max-width: 860px) {
-    .hero-inner { grid-template-columns: 1fr; padding-top: 7rem; gap: 2rem; }
-    .hero-left { align-items: center; text-align: center; }
+    .hero-inner {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto auto;
+      padding-top: 6rem; padding-bottom: 5rem;
+      gap: 0;
+    }
+    /* En tablet/móvil: primero el visual, luego el texto */
+    .hero-right { order: -1; }
+    .hero-left { align-items: center; text-align: center; order: 1; }
     .hero-sub { margin-left: auto; margin-right: auto; text-align: center; }
     .hero-eyebrow { justify-content: center; }
-    .hero-right { height: clamp(300px, 55vw, 420px); width: 100%; }
+    .hero-right { height: clamp(280px, 52vw, 380px); width: 100%; }
     .hero-blob-main { transform: translate(-50%, -50%); left: 50%; }
-    .hero-pill { left: 5%; }
+    .hero-logo-float { transform: translate(-50%, -50%); left: 50%; }
+    @keyframes logoLevitate {
+      0%,100% { transform: translate(-50%, -50%) translateY(0px); }
+      50%      { transform: translate(-50%, -50%) translateY(-18px); }
+    }
+    .hero-pill { left: 10%; bottom: 18%; }
+    .hero-btns { justify-content: center; }
+    .hero-location { justify-content: center; }
   }
-  @media (max-width: 500px) {
-    .hero-title .line-lg { font-size: 3.5rem; }
-    .hero-title .line-accent { font-size: 3rem; }
+  @media (max-width: 520px) {
+    .hero-inner { padding: 5.5rem 5vw 4rem; }
+    .hero-title .line-sm { font-size: 1.1rem; }
+    .hero-title .line-lg { font-size: 3.2rem; }
+    .hero-title .line-accent { font-size: 2.8rem; }
+    .hero-right { height: clamp(220px, 60vw, 320px); }
+    .hero-blob-sm { width: 90px; height: 115px; top: 2%; right: 4%; }
+    .hero-blob-xs { width: 72px; height: 88px; bottom: 4%; right: 10%; }
+    .hero-pill { font-size: 0.72rem; padding: 0.45rem 0.9rem; left: 5%; }
+    .hero-sub { font-size: 0.9rem; }
+    .hero-btns { flex-direction: column; align-items: center; }
+    .hero-cta, .hero-cta-ghost { width: 100%; max-width: 280px; justify-content: center; }
   }
 
   /* ─── SECTION COMMON ─── */
@@ -567,8 +608,11 @@
         </svg>
       </div>
 
-      <!-- Blob principal: logo -->
-      <div class="hero-blob-main">
+      <!-- Blob principal: fondo decorativo, SIN logo dentro -->
+      <div class="hero-blob-main"></div>
+
+      <!-- Logo flotando encima, independiente -->
+      <div class="hero-logo-float">
         <img src="images/Logo-Preview.png" alt="Alyx Logo">
       </div>
 
@@ -587,7 +631,6 @@
         <div class="hero-blob-xs-placeholder">
         </div>
       </div>
-
     </div>
   </div>
 </section>
@@ -641,7 +684,7 @@
     <!-- Col 2-3 fila 2: wide -->
     <div class="gallery-item wide">
       <img src="images/tumblers-2008.jpg" alt="Tumblers 2008" style="object-position:center 30%;">
-      <div class="gallery-overlay"><span class="gallery-overlay-label">Tumblers 2008</span></div>
+      <div class="gallery-overlay"><span class="gallery-overlay-label">Tumblers 2018</span></div>
     </div>
     <!-- Fila 3 -->
     <div class="gallery-item" style="grid-column: 1 / -1; aspect-ratio: 21/7; max-height: 280px;">
